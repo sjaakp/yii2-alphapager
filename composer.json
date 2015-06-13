@@ -1,0 +1,22 @@
+{
+    "name": "sjaakp/yii2-alphapager",
+    "description": "Page data on initial character in Yii2.",
+    "keywords": ["yii", "yii2", "extension", "widget", "paging", "pagination", "gridview", "listview"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sjaak Priester",
+            "email": "sjaak@sjaakpriester.nl",
+            "homepage": "http://sjaakpriester.nl"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+    },
+    "autoload": {
+        "psr-4": {
+            "sjaakp\\alphapager\\": ""
+        }
+    }
+}
