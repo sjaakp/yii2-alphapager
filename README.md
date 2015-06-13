@@ -82,7 +82,7 @@ These are extensions from their Yii-counterparts in `yii\data`, and can be used 
 
 Set this to the name of the attribute which is used to define the pages. Must be set.
 
-#### $alphaPatterns ####
+#### $alphaLabels ####
 
 (see `_AlphaTrait.php` source)
 
