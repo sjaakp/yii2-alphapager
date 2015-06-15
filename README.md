@@ -9,7 +9,7 @@ Likewise with `sjaakp\alphapager\ArrayDataProvider`.
 
 Alpha paging is compatible with normal pagination. You can use them together.
 
-A demonstration of **Yii2 Aphapager** suit is [here](http://www.sjaakpriester.nl/software/alphapager).
+A demonstration of **Yii2 Aphapager** is [here](http://www.sjaakpriester.nl/software/alphapager).
 
 #### Important notice ####
 
@@ -82,13 +82,10 @@ These are extensions from their Yii-counterparts in `yii\data`, and can be used 
 
 Set this to the name of the attribute which is used to define the pages. Must be set.
 
-#### $alphaLabels ####
+#### $alphaPages ####
 
-(see `_AlphaTrait.php` source)
+Settings to modify alpha pagers operation. For normal use, this can remain the default value of `[]` (empty array). For more information, see the `_AlphaTrait.php` source.
 
-#### $alphaPatterns ####
-
-(see `_AlphaTrait.php` source)
 
 ----------
 

@@ -16,52 +16,49 @@ use yii\data\BaseDataProvider;
 
 trait _AlphaTrait {
     /**
-     * @var string - name of the attribute the alpha pager works with.
+     * @var string - name of the model attribute the alpha pager works with.
      * This must be set.
      */
     public $alphaAttribute;
 
     /**
-     * @var array patterns linked to pages
-     * Keys are page values.
-     * Values are patterns defining the select condition of the page.
+     * @var array
+     * Settings to modify alpha pagers operation. For normal use, this can remain an empty array.
+     *
+     * Keys are page values ('A' through 'Z' or any values in AlphaPager's [[preButtons]] or [[postButtons]]).
+     * If a page is not set, the corresponding pattern is equal to the page. So, in default situation, all pages are
+     *      equal to their pattern.
+     *
+     * Values are:
+     * - false      the page is disregarded, the button is not rendered
+     * - array with the following keys:
+     * --- label    the text appearing on the button; if unset, label is equal to page (optional)
+     * --- pattern  (optional)
+     *
+     * pattern can have one of the following values:
      * - false      all models are selected (there is no alpha selection)
-     * - string     page will select models of which [[attribute]] starts with string
-     * - array      page will select models of which the start of attribute complies with the regular expression
-     *                  in array[0]. Note that the start-of-string token ('^') is excluded from the expression.
-     * If page is not in this array, pattern is equal to page.
+     * - string     page will select models of which [[alphaAttribute]] starts with <pattern>
+     * - array      page will select models of which the start of [[alphaAttribute]] matches with the regular expression
+     *                  in <pattern>[0]. The expression is interpreted by the database. Note that the start-of-string token ('^')
+     *                  is excluded from the expression.
      *
      * Example:
-     *
-     *       $patterns = [
-     *           'P' => [ '[PpQq]' ],      // regular expression: include words starting with 'Q' under 'P'
-     *           'Z' => [ '[X-Zx-z]' ],    // regular expression: include words starting with 'X' or 'Y' under 'Z'
-     *       ];
-     */
-    public $alphaPatterns = [];
-
-    /**
-     * @var array of $page => $label links
-     * If page is not set, label will be equal to page
-     * If $label is false, the button will not be rendered.
-     *
-     * Example:
-     *       $labels = [
-     *           'P' => 'PQ',     // label button 'P' with 'PQ'
-     *           'Q' => false,    // suppress button 'Q'
-     *           'Z' => 'X-Z',    // label button 'Z' with 'X-Z'
-     *           'X' => false,    // suppress button 'X'
-     *           'Y' => false,    // suppress button 'Y'
+     *       $alphaPages = [
+     *           'P' => [
+     *                  'label' => 'PQ',                // label button 'P' with 'PQ'
+     *                  'pattern' => [ '[PpQq]' ],      // regular expression: include words starting with 'Q' under 'P'
+     *              ],
+     *           'Q' => false,                          // suppress page 'Q'
+     *           'Z' => [
+     *                  'label' => 'X-Z',               // label button 'Z' with 'X-Z'
+     *                  'pattern' => [ '[X-Zx-z]' ],    // regular expression: include words starting with 'X' or 'Y' under 'Z'
+     *              ],
+     *           'X' => false,                          // suppress page 'X'
+     *           'Y' => false,                          // suppress page 'Y'
      *       ];
      *
      */
-    public $alphaLabels = [];
-
-    /**
-     * @var string
-     * Name of the alpha pagination parameter. Not much reason to change this.
-     */
-    public $alphaParam = 'alpha';
+    public $alphaPages = [];
 
     /**
      * @var string
@@ -69,17 +66,28 @@ trait _AlphaTrait {
      */
     public $alphaDefault = 'A';
 
+    /**
+     * @var string
+     * Name of the alpha pagination parameter. Not much reason to change this (unless you have a conflict
+     *      with another widget).
+     */
+    public $alphaParam = 'alpha';
+
     protected $_page;
     protected $_patterns;
 
     protected function initTrait()  {
         if (! $this->alphaAttribute) {
-            throw new InvalidConfigException('AlphaPagination::attribute must be set.');
+            throw new InvalidConfigException('AlphaPagination::alphaAttribute must be set.');
         }
-        $this->_patterns = array_merge([
-            'all' => false,           // do not modify query
-            '#' => [ '[^A-Za-z]' ],   // regular expression: any pattern not starting with an alphabetic character
-        ], $this->alphaPatterns);
+        $this->_patterns = array_merge([        // note that user can override these defaults
+            'all' => [
+                'pattern' => false              // no alpha selection, do not modify query
+            ],
+            '#' => [
+                'pattern' => [ '[^A-Za-z]' ],   // regular expression: any not alphabetic character
+            ]
+        ], $this->alphaPages);
     }
 
     /**
@@ -100,17 +108,36 @@ trait _AlphaTrait {
 
     protected function getPattern()    {
         if (($page = $this->getPage()) !== null) {
-            return isset($this->_patterns[$page]) ? $this->_patterns[$page] : $page;
+            if (isset($this->_patterns[$page]))    {
+                $p = $this->_patterns[$page];
+                return isset($p['pattern']) ? $p['pattern'] : $page;
+            }
+            else    {
+                return $page;
+            }
         }
         return null;
+    }
+
+    public function getAlphaLabel($page) {
+        if (isset($this->_patterns[$page]))    {
+            $p = $this->_patterns[$page];
+            return isset($p['label']) ? $p['label'] : $page;
+        }
+        else    {
+            return $page;
+        }
     }
 
     public function createUrl($page)    {
         /* @var $this BaseDataProvider */
         $request = Yii::$app->getRequest();
         $params = $request instanceof Request ? $request->getQueryParams() : [];
+
+        // don't copy query parameter from 'normal' pagination
         $suppress = $this->id ? $this->id . '-page' : 'page';
         if (isset($params[$suppress])) unset($params[$suppress]);
+
         $params[0] = Yii::$app->controller->getRoute();
         $params[$this->alphaParam] = $page;
         $urlManager = Yii::$app->getUrlManager();

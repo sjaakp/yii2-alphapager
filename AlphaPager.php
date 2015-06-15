@@ -62,10 +62,6 @@ class AlphaPager extends Widget {
     }
 
     public function run()   {
-        echo $this->renderPageButtons();
-    }
-
-    protected function renderPageButtons()  {
         $pages = array_merge($this->preButtons, range('A', 'Z'), $this->postButtons);
 
         $current = $this->dataProvider->page;
@@ -75,13 +71,14 @@ class AlphaPager extends Widget {
             return $pager->renderPageButton($p, $p == $current);
         }, $pages);
 
-        return Html::tag('ul', implode("\n", $buttons), $this->options);
+        echo Html::tag('ul', implode("\n", $buttons), $this->options);
     }
 
     protected function renderPageButton($page, $active)
     {
-        $labels = $this->dataProvider->alphaLabels;
-        $label = isset($labels[$page]) ? $labels[$page] : $page;
+        $label = $this->dataProvider->getAlphaLabel($page);
+//        $labels = $this->dataProvider->alphaLabels;
+//        $label = isset($labels[$page]) ? $labels[$page] : $page;
         if (! $label) return '';
 
         $options = $this->buttonOptions;

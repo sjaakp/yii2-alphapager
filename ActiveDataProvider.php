@@ -23,6 +23,7 @@ class ActiveDataProvider extends YiiActiveDataProvider {
      * attribute and the regular expression parameter.
      *
      * If null, it is set to work with MySQL. Presumably, this also works with SQLite and Cubrid.
+     * @link https://dev.mysql.com/doc/refman/5.5/en/regexp.html
      *
      * For Oracle, the function body might be something like: return "REGEXP_LIKE($attribute, \"^$pattern\")";
      * @link http://docs.oracle.com/cd/B19306_01/appdev.102/b14251/adfns_regexp.htm
