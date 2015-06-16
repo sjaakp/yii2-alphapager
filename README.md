@@ -82,6 +82,15 @@ These are extensions from their Yii-counterparts in `yii\data`, and can be used 
 
 Set this to the name of the attribute which is used to define the pages. Must be set.
 
+#### $alphaDigits ####
+
+Setting for the way attribute values starting with a digit are handled. Can have the following values:
+
+* `false`      no special handling; digits are treated just like any other non-alphabetic symbol (default)
+* `'full'`     separate pages for each digit
+* `'compact'`  one page for all digits
+
+
 #### $alphaPages ####
 
 Settings to modify alpha pagers operation. For normal use, this can remain the default value of `[]` (empty array). For more information, see the `_AlphaTrait.php` source.
@@ -103,5 +112,9 @@ The **Yii2 Alphapager** `ActiveDataProvider` or `ArrayDataProvider` that this pa
 
 #### $postButtons ####
 
-`array` Page values of buttons which should appear right of the alphabetical buttons. Set this to `[]` if you don't want an '*#*' (non-alphabetic) button. Default: `[ '#' ]`.
+`array` Page values of buttons which should appear right of the alphabetical buttons. Set this to `[]` if you don't want an '*#*' (non-alphabetic) button. Default: `[ 'symbol' ]`.
+
+#### $lowerCase ####
+
+`boolean` Whether the alphabetic buttons are rendered in lower case. Default: `false`. 
 

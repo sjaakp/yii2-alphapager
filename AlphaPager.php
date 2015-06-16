@@ -32,7 +32,15 @@ class AlphaPager extends Widget {
      * @var array - page values of buttons which should appear right of the alphabetical buttons
      * Set this to [] if you don't want a '#' (non-alphabetic) button.
      */
-    public $postButtons = [ '#' ];
+    public $postButtons = [ 'symbol' ];
+
+
+//    public $digits = false;
+
+    /**
+     * @var boolean - whether the alphabetic button labels are in lower case.
+     */
+    public $lowerCase = false;
 
     /**
      * @var array HTML attributes for the pager container tag.
@@ -62,13 +70,19 @@ class AlphaPager extends Widget {
     }
 
     public function run()   {
-        $pages = array_merge($this->preButtons, range('A', 'Z'), $this->postButtons);
+        $digits = $this->dataProvider->alphaDigits;
+        $digs = [];
+        if ($digits == 'full') $digs = range('0', '9');
+        else if ($digits == 'compact') $digs = ['digits'];
+
+        $pages = array_merge($this->preButtons, range('A', 'Z'), $digs, $this->postButtons);
 
         $current = $this->dataProvider->page;
         $pager = $this;
 
         $buttons = array_map(function($p) use ($pager, $current) {
-            return $pager->renderPageButton($p, $p == $current);
+            $p = (string) $p;
+            return $pager->renderPageButton($p, $p === $current);
         }, $pages);
 
         echo Html::tag('ul', implode("\n", $buttons), $this->options);
@@ -76,10 +90,9 @@ class AlphaPager extends Widget {
 
     protected function renderPageButton($page, $active)
     {
-        $label = $this->dataProvider->getAlphaLabel($page);
-//        $labels = $this->dataProvider->alphaLabels;
-//        $label = isset($labels[$page]) ? $labels[$page] : $page;
-        if (! $label) return '';
+        $label = $this->dataProvider->getAlphaLabel($page, $this->lowerCase);
+
+        if ($label === false) return '';
 
         $options = $this->buttonOptions;
         if ($active) {

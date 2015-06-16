@@ -22,11 +22,20 @@ trait _AlphaTrait {
     public $alphaAttribute;
 
     /**
+     * @var bool|string - how to handle attribute values starting with a digit
+     * - false      no special handling; digits are a kind of symbol (default)
+     * - 'full'     separate pages for each digit
+     * - 'compact'  one page for all digits
+     */
+    public $alphaDigits = false;
+
+    /**
      * @var array
-     * Settings to modify alpha pagers operation. For normal use, this can remain an empty array.
+     * Settings to modify operation. For normal use, this can remain an empty array.
      *
-     * Keys are page values ('A' through 'Z' or any values in AlphaPager's [[preButtons]] or [[postButtons]]).
-     * If a page is not set, the corresponding pattern is equal to the page. So, in default situation, all pages are
+     * Keys are page values ('A' through 'Z', 'all', 'digits', 'symbol', or any values in AlphaPager's [[preButtons]]
+     *      or [[postButtons]]). They should be non-numeric.
+     * If a page is not set, the corresponding pattern is equal to the page. So, in default situation, most pages are
      *      equal to their pattern.
      *
      * Values are:
@@ -84,8 +93,14 @@ trait _AlphaTrait {
             'all' => [
                 'pattern' => false              // no alpha selection, do not modify query
             ],
-            '#' => [
-                'pattern' => [ '[^A-Za-z]' ],   // regular expression: any not alphabetic character
+            'digits' => [
+                'label' => '0-9',
+                'pattern' => [ '[0-9]' ]        // regular expression: any digit
+            ],
+            'symbol' => [
+                'label' => '#',
+                'pattern' => $this->alphaDigits ? [ '[^A-Za-z0-9]' ]   // any not alphanumeric character
+                        : [ '[^A-Za-z]' ]   // any not alphabetic character (including digits)
             ]
         ], $this->alphaPages);
     }
@@ -119,13 +134,14 @@ trait _AlphaTrait {
         return null;
     }
 
-    public function getAlphaLabel($page) {
+    public function getAlphaLabel($page, $bToLower = false) {
         if (isset($this->_patterns[$page]))    {
             $p = $this->_patterns[$page];
+            if ($p === false) return $p;
             return isset($p['label']) ? $p['label'] : $page;
         }
         else    {
-            return $page;
+            return $bToLower ? strtolower($page) : $page;
         }
     }
 

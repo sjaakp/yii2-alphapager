@@ -77,7 +77,7 @@ class ActiveDataProvider extends YiiActiveDataProvider {
         $attribute = $this->alphaAttribute;
         $pattern = $this->getPattern();
 
-        if ($pattern)  {
+        if ($pattern !== false)  {
             if (is_array($pattern)) {
                 $pattern = current($pattern);
                 $query->andWhere(call_user_func($this->regex, $attribute, $pattern));

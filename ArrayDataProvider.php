@@ -25,7 +25,7 @@ class ArrayDataProvider extends YiiArrayDataProvider {
     protected function prepareModels()    {
         $pattern = $this->getPattern();
 
-        if (! $pattern) {
+        if ($pattern == false) {
             return parent::prepareModels();
         }
         $origAll = $this->allModels;
