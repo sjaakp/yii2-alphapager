@@ -1,7 +1,7 @@
 <?php
 /**
  * MIT licence
- * Version 1.0
+ * Version 1.0.1
  * Sjaak Priester, Amsterdam 13-06-2015.
  *
  * Alphabetic paging for Yii 2.0
@@ -99,8 +99,8 @@ trait _AlphaTrait {
             ],
             'symbol' => [
                 'label' => '#',
-                'pattern' => $this->alphaDigits ? [ '[^A-Za-z0-9]' ]   // any not alphanumeric character
-                        : [ '[^A-Za-z]' ]   // any not alphabetic character (including digits)
+                'pattern' => $this->alphaDigits ? [ '[^[:alnum:]]' ]   // any not alphanumeric character
+                        : [ '[^[:alpha:]]' ]   // any not alphabetic character (including digits)
             ]
         ], $this->alphaPages);
     }
