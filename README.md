@@ -21,11 +21,11 @@ In contrast to the Yii philosophy, **Yii2	Alphapager** is not transparent to the
 
 The preferred way to install **Yii2 Alphapager** is through [Composer](https://getcomposer.org/). Either add the following to the require section of your `composer.json` file:
 
-`"sjaakp/alphapager": "*"` 
+`"sjaakp/yii2-alphapager": "*"` 
 
 Or run:
 
-`$ php composer.phar require sjaakp/alphapager "*"` 
+`$ php composer.phar require sjaakp/yii2-alphapager "*"` 
 
 You can manually install **Yii2 Alphapager** by [downloading the source in ZIP-format](https://github.com/sjaakp/yii2-alphapager/archive/master.zip).
 
