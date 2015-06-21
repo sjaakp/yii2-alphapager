@@ -82,7 +82,7 @@ class AlphaPager extends Widget {
             $digs = range('A', 'Z');
         }
 
-        $pages = array_merge($this->preButtons, range('A', 'Z'), $digs, $this->postButtons);
+        $pages = array_merge($this->preButtons, $digs, $this->postButtons);
 
         $current = $this->dataProvider->page;
         $pager = $this;
