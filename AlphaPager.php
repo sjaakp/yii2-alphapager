@@ -71,9 +71,16 @@ class AlphaPager extends Widget {
 
     public function run()   {
         $digits = $this->dataProvider->alphaDigits;
-        $digs = [];
-        if ($digits == 'full') $digs = range('0', '9');
-        else if ($digits == 'compact') $digs = ['digits'];
+
+        if ($digits == 'full') {
+            $digs = array_merge(range('A', 'Z'), range('0', '9'));
+        } elseif ($digits == 'compact') {
+            $digs = array_merge(range('A', 'Z'), ['digits']);
+        } elseif ($digits) {
+            $digs = $digits;
+        } else {
+            $digs = range('A', 'Z');
+        }
 
         $pages = array_merge($this->preButtons, range('A', 'Z'), $digs, $this->postButtons);
 
