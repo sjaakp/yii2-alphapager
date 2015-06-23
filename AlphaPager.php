@@ -1,7 +1,7 @@
 <?php
 /**
  * MIT licence
- * Version 1.0
+ * Version 1.0.2
  * Sjaak Priester, Amsterdam 13-06-2015.
  *
  * Alphabetic paging for Yii 2.0
