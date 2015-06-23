@@ -86,9 +86,10 @@ Set this to the name of the attribute which is used to define the pages. Must be
 
 Setting for the way attribute values starting with a digit are handled. Can have the following values:
 
-* `false`      no special handling; digits are treated just like any other non-alphabetic symbol (default)
-* `'full'`     separate pages for each digit
-* `'compact'`  one page for all digits
+* `false`: no special handling; digits are treated just like any other non-alphabetic symbol (default)
+* `'full'`: separate pages for each digit
+* `'compact'`: one page for all digits
+* `array` of characters: alpha pager doesn't display alphabetic characters, but uses the characters in this array; useful for non-western alphabets
 
 
 #### $alphaPages ####
