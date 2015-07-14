@@ -96,6 +96,10 @@ Setting for the way attribute values starting with a digit are handled. Can have
 
 Settings to modify alpha pagers operation. For normal use, this can remain the default value of `[]` (empty array). For more information, see the `_AlphaTrait.php` source.
 
+#### $alphaDefault ####
+
+Default page value; this page opens when no explicit page is given. Default value: `'A'`.
+
 
 ----------
 

@@ -27,6 +27,7 @@ class ActiveDataProvider extends YiiActiveDataProvider {
      *
      * For Oracle, the function body might be something like: return "REGEXP_LIKE($attribute, \"^$pattern\")";
      * @link http://docs.oracle.com/cd/B19306_01/appdev.102/b14251/adfns_regexp.htm
+     * Confirmed by #3.
      *
      * For Postgres, the function body might be something like: return "$attribute ~* \"^$pattern\"";
      * @link http://www.postgresql.org/docs/8.3/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP
