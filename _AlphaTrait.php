@@ -1,8 +1,9 @@
 <?php
 /**
  * MIT licence
- * Version 1.0.1
- * Sjaak Priester, Amsterdam 13-06-2015.
+ * Version 1.0.3
+ * Sjaak Priester, Amsterdam 13-06-2015 ... 01-01-2019.
+ * https://sjaakpriester.nl
  *
  * Alphabetic paging for Yii 2.0
  */

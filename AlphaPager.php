@@ -1,8 +1,9 @@
 <?php
 /**
  * MIT licence
- * Version 1.0.2
- * Sjaak Priester, Amsterdam 13-06-2015.
+ * Version 1.0.3
+ * Sjaak Priester, Amsterdam 13-06-2015 ... 01-01-2019.
+ * https://sjaakpriester.nl
  *
  * Alphabetic paging for Yii 2.0
  */
@@ -12,7 +13,6 @@ namespace sjaakp\alphapager;
 use yii\base\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
-use Yii;
 
 class AlphaPager extends Widget {
 

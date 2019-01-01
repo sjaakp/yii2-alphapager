@@ -13,7 +13,7 @@ A demonstration of **Yii2 Aphapager** is [here](http://www.sjaakpriester.nl/soft
 
 #### Important notice ####
 
-**Yii2 Alphapager's ActiveDataProvider is only proven to work with MySQL databases. It should also work with SQLite and Cubrid, but this is not tested.**
+**Yii2 Alphapager's ActiveDataProvider is only proven to work with MySQL and MariaDB databases. It should also work with SQLite and Cubrid, but this is not tested.**
 
 In contrast to the Yii philosophy, **Yii2	Alphapager** is not transparent to the database, as I'm sorry to say. Presumably, `ActiveDataProvider` can be made to work with Oracle, Postgres, and MSSQL as well. See the comments near `$regex` in `ActiveDataProvider.php` for details. If you can provide more information on using **Yii2 Alphapager** with other databases, I'd be glad to hear it. 
 
@@ -25,7 +25,7 @@ The preferred way to install **Yii2 Alphapager** is through [Composer](https://g
 
 Or run:
 
-`$ php composer.phar require sjaakp/yii2-alphapager "*"` 
+`composer require sjaakp/yii2-alphapager "*"` 
 
 You can manually install **Yii2 Alphapager** by [downloading the source in ZIP-format](https://github.com/sjaakp/yii2-alphapager/archive/master.zip).
 
