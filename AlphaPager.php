@@ -50,13 +50,15 @@ class AlphaPager extends Widget {
 
     /**
      * @var array HTML attributes for the button in a pager container tag.
+     * Default makes pager look good with Bootstrap 4 (and doesn't hurt with Bootstrap 3).
      */
-    public $buttonOptions = [];
+    public $buttonOptions = ['class' => 'page-item'];
 
     /**
      * @var array HTML attributes for the link in a pager container tag.
+     * Default makes pager look good with Bootstrap 4 (and doesn't hurt with Bootstrap 3).
      */
-    public $linkOptions = [];
+    public $linkOptions = ['class' => 'page-link'];
 
     /**
      * @var string the CSS class for the active (currently selected) page button.

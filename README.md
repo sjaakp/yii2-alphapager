@@ -100,6 +100,10 @@ Settings to modify alpha pagers operation. For normal use, this can remain the d
 
 Default page value; this page opens when no explicit page is given. Default value: `'A'`.
 
+#### $alphaParam ####
+
+The alphapager HTML parameter name. Default value: `'alpha'`. Might be changed if there is a conflict with other functionality.
+
 
 ----------
 
@@ -122,4 +126,16 @@ The **Yii2 Alphapager** `ActiveDataProvider` or `ArrayDataProvider` that this pa
 #### $lowerCase ####
 
 `boolean` Whether the alphabetic buttons are rendered in lower case. Default: `false`. 
+
+#### $options ####
+
+`array` HTML options for the alphapager container tag. Default: `[ 'class' => 'pagination' ]`, compatible with Bootstrap. 
+
+#### $buttonOptions ####
+
+`array` HTML options for the alphapager buttons. Default: `[ 'class' => 'page-item' ]`, compatible with Bootstrap 4. 
+
+#### $linkOptions ####
+
+`array` HTML options for the alphapager links. Default: `[ 'class' => 'page-link' ]`, compatible with Bootstrap 4. 
 
