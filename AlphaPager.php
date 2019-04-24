@@ -1,8 +1,8 @@
 <?php
 /**
  * MIT licence
- * Version 1.0.3
- * Sjaak Priester, Amsterdam 13-06-2015 ... 01-01-2019.
+ * Version 1.0.4
+ * Sjaak Priester, Amsterdam 13-06-2015 ... 24-04-2019.
  * https://sjaakpriester.nl
  *
  * Alphabetic paging for Yii 2.0
@@ -46,7 +46,7 @@ class AlphaPager extends Widget {
      * @var array HTML attributes for the pager container tag.
      * Default makes pager look good with Bootstrap.
      */
-    public $options = ['class' => 'pagination'];
+    public $options = ['class' => 'pagination flex-wrap'];
 
     /**
      * @var array HTML attributes for the button in a pager container tag.
