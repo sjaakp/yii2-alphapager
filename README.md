@@ -1,6 +1,10 @@
 Yii2 Alphapager
 ============
 
+[![Latest Stable Version](https://poser.pugx.org/sjaakp/yii2-alphapager/v/stable)](https://packagist.org/packages/sjaakp/yii2-alphapager)
+[![Total Downloads](https://poser.pugx.org/sjaakp/yii2-alphapager/downloads)](https://packagist.org/packages/sjaakp/yii2-alphapager)
+[![License](https://poser.pugx.org/sjaakp/yii2-alphapager/license)](https://packagist.org/packages/sjaakp/yii2-alphapager)
+
 **Yii2 Alphapager** performs alphabetic paging with for instance `GridView`s or `ListView`s. 
 
 Just use `sjaakp\alphapager\ActiveDataProvider` in stead of your normal `yii\dataActiveDataProvider`, and put an `AlphaPager` widget in front of your `GridView`, and you're running.
